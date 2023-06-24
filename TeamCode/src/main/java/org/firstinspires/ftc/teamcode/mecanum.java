@@ -26,7 +26,10 @@ public class mecanum extends OpMode {
     @Override
     public void init() {
         /* instantiate motors */
-
+        fL = new Motor(hardwareMap, "frontLeft");
+        fR = new Motor(hardwareMap, "frontRight");
+        bL = new Motor(hardwareMap, "rearLeft");
+        bR = new Motor(hardwareMap, "rearRight");
         drive = new MecanumDrive(fL, fR, bL, bR);
         driverOp = new GamepadEx(gamepad1);
     }
