@@ -12,14 +12,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class mecanum extends OpMode {
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
-    //    private MecanumDrive drive;
+
+
     private MecanumDrive drive;
     private Motor fL, fR, bL, bR;
     private GamepadEx driverOp;
+
 
 
 
@@ -27,19 +25,33 @@ public class mecanum extends OpMode {
     public void init() {
         /* instantiate motors */
         fL = new Motor(hardwareMap, "frontLeft");
+
         fR = new Motor(hardwareMap, "frontRight");
         bL = new Motor(hardwareMap, "rearLeft");
         bR = new Motor(hardwareMap, "rearRight");
+        bL.setInverted(true);
+        bR.setInverted(true);
         drive = new MecanumDrive(fL, fR, bL, bR);
         driverOp = new GamepadEx(gamepad1);
+
     }
 
     @Override
     public void loop() {
         drive.driveRobotCentric(
-                driverOp.getLeftX(),
-                driverOp.getLeftY(),
-                driverOp.getRightY()
+                0.5*driverOp.getLeftX(),
+
+                0.5*driverOp.getLeftY(),
+                0.5*driverOp.getRightX()
+
+
+
+
         );
+        telemetry.addData("Left Stick Y", driverOp.getLeftY());
+        telemetry.addData("Left Stick X", driverOp.getLeftX());
+        telemetry.addData("Right Stick X", driverOp.getRightX());
+        telemetry.update();
+
     }
 }
