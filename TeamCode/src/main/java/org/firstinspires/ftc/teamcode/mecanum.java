@@ -6,7 +6,9 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.teamcode.util.Encoder;
 
 @TeleOp(name="mecanum", group="LinearOpmode")
 public class mecanum extends OpMode {
@@ -16,6 +18,7 @@ public class mecanum extends OpMode {
 
     private MecanumDrive drive;
     private Motor fL, fR, bL, bR;
+    private Encoder lE, cE, rE;
     private GamepadEx driverOp;
 
 
@@ -28,6 +31,17 @@ public class mecanum extends OpMode {
         fR = new Motor(hardwareMap, "frontRight");
         bL = new Motor(hardwareMap, "rearLeft");
         bR = new Motor(hardwareMap, "rearRight");
+
+
+        lE = new Encoder(hardwareMap.get(DcMotorEx.class, "leftEnc"));
+        rE = new Encoder(hardwareMap.get(DcMotorEx.class, "rightEnc"));
+        cE = new Encoder(hardwareMap.get(DcMotorEx.class, "centerEnc"));
+
+        lE.setDirection(Encoder.Direction.REVERSE);
+        rE.setDirection(Encoder.Direction.REVERSE);
+        cE.setDirection(Encoder.Direction.REVERSE);
+
+
 
         // setting motors to power mode for testing
         fL.setRunMode(Motor.RunMode.RawPower);
@@ -60,6 +74,9 @@ public class mecanum extends OpMode {
         telemetry.addData("Left Stick Y", driverOp.getLeftY());
         telemetry.addData("Left Stick X", driverOp.getLeftX());
         telemetry.addData("Right Stick X", driverOp.getRightX());
+        telemetry.addData("leftEnc", lE.getCurrentPosition());
+        telemetry.addData("rightEnc", rE.getCurrentPosition());
+        telemetry.addData("Center", cE.getCurrentPosition());
         telemetry.update();
 
     }
