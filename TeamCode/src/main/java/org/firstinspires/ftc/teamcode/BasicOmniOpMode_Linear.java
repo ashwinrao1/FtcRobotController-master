@@ -115,65 +115,8 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            if (gamepad1.right_bumper) {
-                increment = 1;
-                telemetry.addData("increment", increment);
-            }
-            if (gamepad1.left_bumper) {
-                increment = 0.3333333;
-                telemetry.addData("increment", increment);
-            }
-            if (gamepad1.left_stick_x == 0 && gamepad1.left_stick_y == 0 && gamepad1.right_stick_x == 0) {
-                frontLeft2 = 0;
-                frontRight2 = 0;
-                rearLeft2 = 0;
-                rearRight2 = 0;
-            } else {
-                if (gamepad1.left_stick_x == 1) {
-                    frontLeft2 = (int) (1500 * increment);
-                    frontRight2 = (int) (-1500 * increment);
-                    rearLeft2 = -1500 * increment;
-                    rearRight2 = 1500 * increment;
-                } else if (gamepad1.left_stick_x == -1) {
-                    frontLeft2 = (int) (-1500 * increment);
-                    frontRight2 = (int) (1500 * increment);
-                    rearLeft2 = 1500 * increment;
-                    rearRight2 = -1500 * increment;
-                } else {
-                }
-                if (gamepad1.left_stick_y == -1) {
-                    frontLeft2 = (int) (1500 * increment);
-                    frontRight2 = (int) (1500 * increment);
-                    rearLeft2 = 1500 * increment;
-                    rearRight2 = 1500 * increment;
-                } else if (gamepad1.left_stick_y == 1) {
-                    frontLeft2 = (int) (-1500 * increment);
-                    frontRight2 = (int) (-1500 * increment);
-                    rearLeft2 = -1500 * increment;
-                    rearRight2 = -1500 * increment;
-                } else {
-                }
-                if (gamepad1.right_stick_x == -1) {
-                    frontLeft2 = (int) (-1500 * increment);
-                    frontRight2 = (int) (1500 * increment);
-                    rearLeft2 = 1500 * increment;
-                    rearRight2 = 1500 * increment;
-                    telemetry.addData("key", "-1");
-                    telemetry.update();
-                } else if (gamepad1.right_stick_x == 1) {
-                    frontLeft2 = (int) (1500 * increment);
-                    frontRight2 = (int) (-1500 * increment);
-                    rearLeft2 = 1500 * increment;
-                    rearRight2 = 1500 * increment;
-                    telemetry.addData("key", "1");
-                    telemetry.update();
-                } else {
-                }
-            }
-            ((DcMotorEx) frontLeft).setVelocity(frontLeft2);
-            ((DcMotorEx) frontRight).setVelocity(frontRight2);
-            ((DcMotorEx) rearLeft).setVelocity(rearLeft2);
-            ((DcMotorEx) rearRight).setVelocity(rearRight2);
+            frontLeft.setPower(1);
+
         }
 //
 //
