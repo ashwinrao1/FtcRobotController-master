@@ -60,8 +60,9 @@ public class mecanum extends OpMode {
     public void loop() {
          drive.driveRobotCentric(
               0.5*driverOp.getLeftX(),
-                 0.5*driverOp.getRightX(),
-               0.5*driverOp.getLeftY()
+                 0.5*driverOp.getLeftY(),
+                 0.5*driverOp.getRightX()
+
 
          );
         
