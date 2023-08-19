@@ -23,7 +23,7 @@ public class DriveConstants {
     /*
      * These are motor constants that should be listed online for your motors.
      */
-    public static final double TICKS_PER_REV = 560;
+    public static final double TICKS_PER_REV = 528.64;
     public static final double MAX_RPM = 300;
 
     /*
@@ -34,7 +34,7 @@ public class DriveConstants {
      * If using the built-in motor velocity PID, update MOTOR_VELO_PID with the tuned coefficients
      * from DriveVelocityPIDTuner.
      */
-    public static final boolean RUN_USING_ENCODER = true;
+    public static final boolean RUN_USING_ENCODER = false;
     public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(0, 0, 0,
       getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
 
@@ -46,9 +46,9 @@ public class DriveConstants {
      * angular distances although most angular parameters are wrapped in Math.toRadians() for
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
-    public static double WHEEL_RADIUS = 2.95276; // in
-    public static double GEAR_RATIO = 20; // output (wheel) speed / input (motor) speed
-    public static double TRACK_WIDTH = 8.97; // in
+    public static double WHEEL_RADIUS = 1.47638; // in
+    public static double GEAR_RATIO = 18.9; // output (wheel) speed / input (motor) speed
+    public static double TRACK_WIDTH = 13; // in
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
@@ -102,7 +102,7 @@ public class DriveConstants {
      */
     public static double MAX_VEL = 46;
     public static double MAX_ACCEL = 90;
-    public static double MAX_ANG_VEL = 3.2800;
+    public static double MAX_ANG_VEL = 3.5;
     public static double MAX_ANG_ACCEL = Math.toRadians(360);
 
     public static RevHubOrientationOnRobot.LogoFacingDirection LOGO_FACING_DIR =
