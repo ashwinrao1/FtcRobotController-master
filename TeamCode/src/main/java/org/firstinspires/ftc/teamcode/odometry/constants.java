@@ -23,7 +23,7 @@ public class constants {
     /*
      * These are motor constants that should be listed online for your motors.
      */
-    public static final double TICKS_PER_REV = 528.64;
+    public static final double TICKS_PER_REV = 8192;
     public static final double MAX_RPM = 300;
 
     /*
@@ -35,12 +35,12 @@ public class constants {
      * from DriveVelocityPIDTuner.
      */
     public static final boolean RUN_USING_ENCODER = false;
-    public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(0, 0, 0,
-            getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
+   // public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(0, 0, 0,
+     //       getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
 
 
-    public static double WHEEL_RADIUS = 1.47638; // in
-    public static double GEAR_RATIO = 18.9; // output (wheel) speed / input (motor) speed
+    public static double WHEEL_RADIUS = 0.688976; // in
+    public static double GEAR_RATIO = 1; // output (wheel) speed / input (motor) speed
     public static double TRACK_WIDTH = 13; // in
 
 
@@ -51,7 +51,7 @@ public class constants {
     public static double MAX_ANG_ACCEL = Math.toRadians(360);
 
 
-    public static double encoderTicksToInches(double ticks) {
+    public static double encoderTicksToInches(int ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
     public static double encoderInchesToTicks(double inches){
