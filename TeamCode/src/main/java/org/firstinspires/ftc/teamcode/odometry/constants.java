@@ -54,6 +54,12 @@ public class constants {
     public static double encoderTicksToInches(int ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
+
+    public static int inchesToEncoderTicks(double inches)
+    {
+        return (int)((inches * TICKS_PER_REV) / (WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO));
+    }
+
     public static double encoderInchesToTicks(double inches){
         return (inches * TICKS_PER_REV) / (Math.PI * 2 * WHEEL_RADIUS * GEAR_RATIO);
     }
