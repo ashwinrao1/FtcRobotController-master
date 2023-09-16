@@ -25,7 +25,7 @@ public class autonomous extends LinearOpMode {
     private static double kU = 0.00045;
     private static double TU = 0.86957;
     public static double kP = 0.2*kU;
-    public static double kI = 0.4*(kU/TU);
+    public static double kI = 0.4*(kU/TU)*0.5;
     public static double kD = 0.066*kU*TU;
     public static double kF = 0;
     public static double distance =20;
@@ -100,6 +100,7 @@ public class autonomous extends LinearOpMode {
         pidfController.setSetPoint(constants.inchesToEncoderTicks(distance));
         pidfController.setTolerance(100, 10);
         pidfController.setIntegrationBounds(-0.25/kI, 0.25/kI);
+
         int lETicks = lE.getCurrentPosition();
         int rETicks = rE.getCurrentPosition();
 //        while(opModeIsActive()){
@@ -146,7 +147,21 @@ public class autonomous extends LinearOpMode {
 //            bR.setPower(0);
 //
 //        }
-
+//        output = 0;
+//        while (!pidfController.atSetPoint() && lE.getCurrentPosition() < 0.4*constants.inchesToEncoderTicks(distance))
+//        {
+//            output = output +0.05;
+//            fL.setPower(output);
+//            fR.setPower(output);
+//            bL.setPower(output);
+//            bR.setPower(output);
+//            telemetry.addData("Position", 10*constants.encoderTicksToInches(lE.getCurrentPosition()));
+//            telemetry.addData("Expected position", 10*distance);
+////            telemetry.addData("Output", output);
+//            telemetry.update();
+//        }
+        double Loutput;
+        double ROutput;
         while (!pidfController.atSetPoint() && opModeIsActive())
         {
             pidfController.setPIDF(kP, kI, kD, kF);
@@ -159,9 +174,9 @@ public class autonomous extends LinearOpMode {
 //            telemetry.addData("Center", cE.getCurrentPosition());
 //            telemetry.addData("rightEnc", rE.getCurrentPosition());
 //            telemetry.addData("Error", pidfController.getPositionError());
-//            telemetry.addData("Position", 10*constants.encoderTicksToInches(lE.getCurrentPosition()));
-//            telemetry.addData("Expected position", 10*distance);
-            telemetry.addData("Output", output);
+            telemetry.addData("Position", 10*constants.encoderTicksToInches(lE.getCurrentPosition()));
+            telemetry.addData("Expected position", 10*distance);
+//            telemetry.addData("Output", output);
             telemetry.update();
 
         }
