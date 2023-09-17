@@ -32,6 +32,19 @@ public class trackingTest extends LinearOpMode {
         rE = hardwareMap.get(DcMotor.class, "rightEnc");
         cE = hardwareMap.get(DcMotor.class, "centerEnc");
 
+        // setting encoders to correct direction
+        lE.setDirection(DcMotor.Direction.REVERSE);
+        rE.setDirection(DcMotor.Direction.REVERSE);
+        cE.setDirection(DcMotor.Direction.REVERSE);
+
+        // resetting encoders
+        lE.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rE.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        cE.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        cE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         waitForStart();
 
         while (opModeIsActive())
