@@ -23,11 +23,14 @@ public class trackingTest extends LinearOpMode {
     private DcMotor lE = null;
     private DcMotor rE = null;
     private DcMotor cE = null;
+    private int lEInitial;
+    private int rEInitial;
+    private int cEInitial;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
-        tracking tracker = new tracking(2.84375, 2.84375, 5.34375, 0);
+        tracking tracker = new tracking(4.0625, 4.0625, 5.34375, 0);
         lE = hardwareMap.get(DcMotor.class, "leftEnc");
         rE = hardwareMap.get(DcMotor.class, "rightEnc");
         cE = hardwareMap.get(DcMotor.class, "centerEnc");
@@ -45,16 +48,20 @@ public class trackingTest extends LinearOpMode {
         rE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         cE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        lEInitial = lE.getCurrentPosition();
+        rEInitial = rE.getCurrentPosition();
+        cEInitial = cE.getCurrentPosition();
         waitForStart();
 
         while (opModeIsActive())
         {
-            tracker.calculateValues(lE.getCurrentPosition(), rE.getCurrentPosition(), cE.getCurrentPosition());
+
+            tracker.calculateValues(lE.getCurrentPosition(), rE.getCurrentPosition(), cE.getCurrentPosition(), lEInitial, rEInitial, cEInitial);
 
 
             telemetry.addData("X", tracker.d_1[0]);
             telemetry.addData("Y", tracker.d_1[1]);
-            telemetry.addData("theta", tracker.theta_1);
+            telemetry.addData("theta", tracker.theta_1*180/Math.PI);
 
             telemetry.update();
         }

@@ -73,18 +73,18 @@ public class autonomous extends LinearOpMode {
 
 
 
-        drive x = new drive(90, 10);
-        double angle = 0.5*Math.PI;
-        double output = 0;
-        telemetry.addData("Position", constants.encoderTicksToInches((int) (0.5*(lE.getCurrentPosition() + rE.getCurrentPosition()))));
-        telemetry.addData("Expected position", constants.inchesToEncoderTicks(distance));
-        telemetry.addData("Output", output);
-        telemetry.update();
-        double frontLeft = Math.sin(angle + 0.25*Math.PI);
-        double frontRight = Math.sin(angle - 0.25*Math.PI);
-        double rearLeft =  Math.sin(angle - 0.25*Math.PI);
-        double rearRight = Math.sin(angle + 0.25*Math.PI);
-        sleep(5000);
+//        drive x = new drive(90, 10);
+//        double angle = 0.5*Math.PI;
+//        double output = 0;
+//        telemetry.addData("Position", constants.encoderTicksToInches((int) (0.5*(lE.getCurrentPosition() + rE.getCurrentPosition()))));
+//        telemetry.addData("Expected position", constants.inchesToEncoderTicks(distance));
+//        telemetry.addData("Output", output);
+//        telemetry.update();
+//        double frontLeft = Math.sin(angle + 0.25*Math.PI);
+//        double frontRight = Math.sin(angle - 0.25*Math.PI);
+//        double rearLeft =  Math.sin(angle - 0.25*Math.PI);
+//        double rearRight = Math.sin(angle + 0.25*Math.PI);
+//        sleep(5000);
         //front right = back left
         //front left = back right
 //        fL.setPower(0.25*frontLeft);
@@ -94,15 +94,15 @@ public class autonomous extends LinearOpMode {
 
 
 
-
-        PIDFController pidfController = new PIDFController(kP, kI, kD, kF);
-        pidfController.reset();
-        pidfController.setSetPoint(constants.inchesToEncoderTicks(distance));
-        pidfController.setTolerance(100, 10);
-        pidfController.setIntegrationBounds(-0.25/kI, 0.25/kI);
-
-        int lETicks = lE.getCurrentPosition();
-        int rETicks = rE.getCurrentPosition();
+//
+//        PIDFController pidfController = new PIDFController(kP, kI, kD, kF);
+//        pidfController.reset();
+//        pidfController.setSetPoint(constants.inchesToEncoderTicks(distance));
+//        pidfController.setTolerance(100, 10);
+//        pidfController.setIntegrationBounds(-0.25/kI, 0.25/kI);
+//
+//        int lETicks = lE.getCurrentPosition();
+//        int rETicks = rE.getCurrentPosition();
 //        while(opModeIsActive()){
 //            while (!pidfController.atSetPoint() && opModeIsActive())
 //            {
@@ -160,22 +160,24 @@ public class autonomous extends LinearOpMode {
 ////            telemetry.addData("Output", output);
 //            telemetry.update();
 //        }
-        double Loutput;
-        double ROutput;
-        while (!pidfController.atSetPoint() && opModeIsActive())
+//        double Loutput;
+//        double ROutput;
+        while (opModeIsActive())
         {
-            pidfController.setPIDF(kP, kI, kD, kF);
-             output = pidfController.calculate(lE.getCurrentPosition());
-            fL.setPower(output);
-            fR.setPower(output);
-            bL.setPower(output);
-            bR.setPower(output);
-//            telemetry.addData("leftEnc", lE.getCurrentPosition());
-//            telemetry.addData("Center", cE.getCurrentPosition());
-//            telemetry.addData("rightEnc", rE.getCurrentPosition());
-//            telemetry.addData("Error", pidfController.getPositionError());
-            telemetry.addData("Position", 10*constants.encoderTicksToInches(lE.getCurrentPosition()));
-            telemetry.addData("Expected position", 10*distance);
+//            pidfController.setPIDF(kP, kI, kD, kF);
+//             output = pidfController.calculate(lE.getCurrentPosition());
+//            fL.setPower(output);
+//            fR.setPower(output);
+//            bL.setPower(output);
+//            bR.setPower(output);
+////            telemetry.addData("leftEnc", lE.getCurrentPosition());
+////            telemetry.addData("Center", cE.getCurrentPosition());
+////            telemetry.addData("rightEnc", rE.getCurrentPosition());
+////            telemetry.addData("Error", pidfController.getPositionError());
+            telemetry.addData("Left", constants.encoderTicksToInches(lE.getCurrentPosition()));
+            telemetry.addData("Right", constants.encoderTicksToInches(rE.getCurrentPosition()));
+            telemetry.addData("Center", constants.encoderTicksToInches(cE.getCurrentPosition()));
+           // telemetry.addData("Expected position", 10*distance);
 //            telemetry.addData("Output", output);
             telemetry.update();
 
