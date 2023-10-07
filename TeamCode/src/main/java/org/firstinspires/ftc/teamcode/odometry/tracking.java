@@ -59,8 +59,6 @@ public class tracking {
     public double[] deltaD_L(double theta_1, double deltaS, double deltaTheta, double deltaR){
         double[] deltaD_L = new double[]{deltaS, deltaR};
         if(deltaTheta != 0){
-//            deltaD_L[0] = 2*Math.sin(theta_1/2) *( (deltaS/deltaTheta) + s_S);
-//            deltaD_L[1] = 2*Math.sin(theta_1/2) *( (deltaR/deltaTheta) + s_R);
 
             deltaD_L[0] = 2*Math.sin(deltaTheta/2) *( (deltaS/deltaTheta) + s_S);
             deltaD_L[1] = 2*Math.sin(deltaTheta/2) *( (deltaR/deltaTheta) + s_R);
@@ -89,8 +87,8 @@ public class tracking {
 
         double theta = -theta_m;
 
-        deltaD[0] = Math.cos(theta) * x1 - Math.sin(theta) * y1;
-        deltaD[1] = Math.sin(theta) * x1 + Math.cos(theta) * y1;
+        deltaD[0] = (Math.cos(theta) * x1) - (Math.sin(theta) * y1);
+        deltaD[1] = (Math.sin(theta) * x1) +( Math.cos(theta) * y1);
 
         return deltaD;
     }
@@ -127,8 +125,8 @@ public class tracking {
         // calculate change in orientation
         deltaTheta = deltaTheta(theta_1, theta_0);
 
-        // calculate change in local coordinates
-        deltaD_L(theta_1, deltaS, deltaTheta, deltaR);
+//        // calculate change in local coordinates
+//        deltaD_L(theta_1, deltaS, deltaTheta, deltaR);
 
         // theta_m
         theta_m = theta_m(theta_0, deltaTheta);
