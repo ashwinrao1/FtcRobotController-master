@@ -85,7 +85,7 @@ public class tracking {
         double x1 = deltaD_L[0];
         double y1 = deltaD_L[1];
 
-        double theta = -theta_m;
+        double theta =  -theta_m;
 
         deltaD[0] = (Math.cos(theta) * x1) - (Math.sin(theta) * y1);
         deltaD[1] = (Math.sin(theta) * x1) +( Math.cos(theta) * y1);
